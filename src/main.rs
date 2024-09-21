@@ -17,6 +17,7 @@ const MESSAGE4: &str = "fourth";
 
 fn main() {
     let mut device = Device::new(PORT_PATH.to_string(), 9600);
+    device.write(MESSAGE1);
     device.read();
 
     // let builder = serialport::new(PORT_PATH, 9600);

@@ -37,7 +37,6 @@ impl Device {
 
         // read until get something
         while buf_size == 0 {
-            println!("loop");
             match self.port.read(serial_buf.as_mut_slice()) {
                 Ok(t) => {
                     buf_size = t;
@@ -50,6 +49,23 @@ impl Device {
                     break;
                 }
             }
+            println!("DEBUG: no input");
+        }
+    }
+
+    pub fn write(&mut self, message: &str) {
+        println!(
+            "Writing '{}' to {} at {} baud",
+            message, self.path, self.baud_rate
+        );
+        match self.port.write(message.as_bytes()) {
+            Ok(_) => {
+                self.port.flush().unwrap(); // Ensure the data is sent out before continuing
+                println!("writing: {}", message);
+                std::io::stdout().flush().unwrap();
+            }
+            Err(ref e) if e.kind() == io::ErrorKind::TimedOut => (),
+            Err(e) => eprintln!("{:?}", e),
         }
     }
 }
