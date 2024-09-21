@@ -1,0 +1,29 @@
+Connection SUCCESS!: SerialPortBuilder { path: "/dev/ttyACM0", baud_rate: 9600, data_bits: Eight, flow_control: None, parity: None, stop_bits: One, timeout: 0ns }
+Writing 'first' to /dev/ttyACM0 at 9600 baud
+writing: first
+Receiving data on /dev/ttyACM0 at 9600 baud:
+DEBUG: no input
+DEBUG: no input
+Echoing: first
+DEBUG: no input
+Writing 'second' to /dev/ttyACM0 at 9600 baud
+writing: second
+Receiving data on /dev/ttyACM0 at 9600 baud:
+DEBUG: no input
+DEBUG: no input
+Echoing: second
+DEBUG: no input
+Writing 'third' to /dev/ttyACM0 at 9600 baud
+writing: third
+Receiving data on /dev/ttyACM0 at 9600 baud:
+DEBUG: no input
+DEBUG: no input
+Echoing: third
+DEBUG: no input
+Writing 'fourth' to /dev/ttyACM0 at 9600 baud
+writing: fourth
+Receiving data on /dev/ttyACM0 at 9600 baud:
+DEBUG: no input
+DEBUG: no input
+Echoing: fourth
+DEBUG: no input

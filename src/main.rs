@@ -19,6 +19,12 @@ fn main() {
     let mut device = Device::new(PORT_PATH.to_string(), 9600);
     device.write(MESSAGE1);
     device.read();
+    device.write(MESSAGE2);
+    device.read();
+    device.write(MESSAGE3);
+    device.read();
+    device.write(MESSAGE4);
+    device.read();
 
     // let builder = serialport::new(PORT_PATH, 9600);
     // println!("{:?}", &builder);

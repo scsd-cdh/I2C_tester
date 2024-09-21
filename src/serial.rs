@@ -1,5 +1,9 @@
 use serialport::SerialPort;
-use std::io::{self, Write};
+use std::{
+    io::{self, Write},
+    thread::sleep,
+    time::Duration,
+};
 
 #[derive(Debug)]
 pub struct Device {
@@ -50,6 +54,7 @@ impl Device {
                 }
             }
             println!("DEBUG: no input");
+            sleep(Duration::from_millis(500));
         }
     }
 
