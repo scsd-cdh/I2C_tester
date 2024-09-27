@@ -31,9 +31,10 @@ impl Device {
         })
     }
 
-    pub fn read(&mut self) {
+    pub fn read(&mut self) -> Vec<String> {
         let mut serial_buf: Vec<u8> = vec![0; 1000];
         let mut buf_size: usize = 0;
+        let mut result: Vec<String> = Vec::new(); // Vector to store the received strings
         println!(
             "Receiving data on {} at {} baud:",
             &self.path, self.baud_rate
@@ -46,6 +47,14 @@ impl Device {
                     buf_size = t;
                     io::stdout().write_all(&serial_buf[..t]).unwrap();
                     io::stdout().flush().unwrap();
+
+                    let received_str = String::from_utf8_lossy(&serial_buf[..t]).to_string();
+
+                    // Split the received data into lines or chunks and push to result
+                    for line in received_str.lines() {
+                        result.push(line.to_string());
+                    }
+                    println!("the strin: {received_str}")
                 }
                 Err(ref e) if e.kind() == io::ErrorKind::TimedOut => (),
                 Err(e) => {
@@ -56,6 +65,7 @@ impl Device {
             println!("DEBUG: no input");
             sleep(Duration::from_millis(500));
         }
+        result
     }
 
     pub fn write(&mut self, message: &str) {

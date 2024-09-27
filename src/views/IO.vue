@@ -8,10 +8,10 @@ import { invoke } from '@tauri-apps/api/tauri'
 let input = ref('');
 
 async function parseData(data: string) {
-  let receive = await invoke<string>('write_to_pico', { command: data })
+  let receive = await invoke<string[]>('write_to_pico', { command: data })
   //invoke('my_custom_command', { message: data })
-  // let receive = await invoke<string>('play_with_piko')
-  input.value = receive;
+  //let receive = await invoke<string>('play_with_piko')
+  input.value = receive.join(', ');
 }
 
 </script>

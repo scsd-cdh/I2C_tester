@@ -47,15 +47,16 @@ fn play_with_piko() -> String {
 }
 
 #[tauri::command]
-fn write_to_pico(command: &str) -> String {
+fn write_to_pico(command: &str) -> Vec<String> {
     print!("ATTEMP WRITE CAUTION");
+    let mut output: Vec<String> = Vec::new();
     let mut device_lock = DEVICE.lock().unwrap();
     if let Some(ref mut device) = *device_lock {
         println!("writing: {command}");
         device.write(command);
-        device.read();
+        output = device.read(); // This now returns Vec<String>
     }
-    "nothing yet".to_string()
+    output
 }
 
 #[tauri::command]
