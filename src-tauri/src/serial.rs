@@ -34,7 +34,7 @@ impl Device {
     pub fn read(&mut self) -> Vec<String> {
         let mut serial_buf: Vec<u8> = vec![0; 1000];
         let mut buf_size: usize = 0;
-        let mut result: Vec<String> = Vec::new(); // Vector to store the received strings
+        let mut result: Vec<String> = Vec::new();
         println!(
             "Receiving data on {} at {} baud:",
             &self.path, self.baud_rate
@@ -45,8 +45,8 @@ impl Device {
             match self.port.read(serial_buf.as_mut_slice()) {
                 Ok(t) => {
                     buf_size = t;
-                    io::stdout().write_all(&serial_buf[..t]).unwrap();
-                    io::stdout().flush().unwrap();
+                    // io::stdout().write_all(&serial_buf[..t]).unwrap();
+                    // io::stdout().flush().unwrap();
 
                     let received_str = String::from_utf8_lossy(&serial_buf[..t]).to_string();
 
@@ -54,7 +54,7 @@ impl Device {
                     for line in received_str.lines() {
                         result.push(line.to_string());
                     }
-                    println!("the strin: {received_str}")
+                    println!("the string: {received_str}")
                 }
                 Err(ref e) if e.kind() == io::ErrorKind::TimedOut => (),
                 Err(e) => {
@@ -75,7 +75,7 @@ impl Device {
         );
         match self.port.write(message.as_bytes()) {
             Ok(_) => {
-                self.port.flush().unwrap(); // Ensure the data is sent out before continuing
+                self.port.flush().unwrap();
                 println!("writing: {}", message);
                 std::io::stdout().flush().unwrap();
             }
