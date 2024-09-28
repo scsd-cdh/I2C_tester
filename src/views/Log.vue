@@ -20,7 +20,6 @@ import { Command, Log } from '../types/types';
 const logs = ref<Log[]>([]);
 
 function handleRun(command: Command) {
-  console.log(`run command: ${command}`)
   const newLog: Log = { title: command.title, message: "fewf", success: true }
   logs.value.push(newLog)
 }

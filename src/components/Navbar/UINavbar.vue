@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar">
     <div class="navbar-brand">
-      <router-link to="/" class="navbar-item">GS</router-link>
+      <router-link to="/" class="navbar-item">L</router-link>
     </div>
     <div class="navbar-menu">
       <router-link v-for="section in sections" :key="section.name" :to="section.link" class="navbar-item"

@@ -27,13 +27,14 @@ const { commands } = props;
 const selectedCommandCode = ref<string>(commands[0]?.code || '');
 
 // Computed property to find the selected command object
-const selectedCommand = computed(() => commands.find(command => command.code === selectedCommandCode.value));
+const selectedCommand = computed(() =>
+  commands.find(command => command.code === selectedCommandCode.value));
 
 // Method to emit the selected command
 const runCommand = () => {
   if (selectedCommand.value) {
     emit('run', selectedCommand.value);
-    console.log(selectedCommand.value);
+    console.log("run command: ", selectedCommand.value.code);
   }
 };
 </script>
