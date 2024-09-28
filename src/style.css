@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.page-title {
+  font-size: 2rem;
+  /* Adjust the font size as needed */
+  margin-bottom: 20px;
+  /* Adds space below the title */
+}
