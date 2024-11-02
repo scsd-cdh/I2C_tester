@@ -22,6 +22,9 @@
       "@a/*": [
         "./src/assets/*"
       ],
+      "@t/*": [
+        "./src/types/*"
+      ],
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

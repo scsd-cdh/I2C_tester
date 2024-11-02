@@ -11,6 +11,7 @@ async function parseData(data: string) {
   let receive = await invoke<string[]>('write_to_pico', { command: data })
   //invoke('my_custom_command', { message: data })
   //let receive = await invoke<string>('play_with_piko')
+  console.log('returned value: ', receive.join(','))
   input.value = receive.join(', ');
 }
 

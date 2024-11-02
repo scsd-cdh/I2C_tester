@@ -16,11 +16,20 @@ import CommandRun from '@c/DropDown/CommandRun.vue'
 import ConsoleLog from '@c/Tables/ConsoleLog.vue'
 
 import { Command, Log } from '../types/types';
+import { invoke } from '@tauri-apps/api/tauri'
 
 const logs = ref<Log[]>([]);
 
-function handleRun(command: Command) {
-  const newLog: Log = { title: command.title, message: "fewf", success: true }
+async function handleRun(command: Command) {
+  //const newLog: Log = { title: command.title, message: "fewf", success: true }
+  let receive = await invoke<string[]>('write_to_pico', { command: command.code })
+  console.log('returned value: ', receive.join(','))
+  const out = receive.join(', ');
+  const newLog: Log = {
+    title: command.code,
+    message: out,
+    success: Math.random() < 0.5 //TODO: redo when validate output
+  }
   logs.value.push(newLog)
 }
 

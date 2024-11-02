@@ -1,6 +1,6 @@
 <template>
   <div>
-    Welcome to the Ground Station
+    Welcome to the Logger
   </div>
 </template>
 
