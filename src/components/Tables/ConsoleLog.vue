@@ -1,53 +1,19 @@
 <template>
-  <div class="log-container">
-    <div v-for="(log, index) in logs.slice().reverse()" :key="index"
-      :class="['log-entry', { success: log.success, failure: !log.success }]">
-      <div class="log-method">{{ log.title }}</div>
-      <div class="log-message">{{ log.message }}</div>
+  <div class="mx-auto p-4 border border-gray-300 rounded-md max-h-[60vh] max-w-[80vw] overflow-y-auto bg-gray-100">
+    <div v-for="(log, index) in logs.slice().reverse()" :key="index" :class="[
+      'py-2 border-b border-gray-200 last:border-none',
+      log.success ? 'text-green-600' : 'text-red-600'
+    ]">
+      <div class="font-bold">{{ log.title }}</div>
+      <div>{{ log.message }}</div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Log } from "../../types/types"
-
+import { Log } from "../../types/types";
 
 const props = defineProps<{
   logs: Log[]
 }>();
 </script>
-
-<style scoped>
-.log-container {
-  margin-left: auto;
-  margin-right: auto;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  max-height: 60vh;
-  max-width: 80vw;
-  overflow-y: auto;
-  background-color: #f9f9f9;
-}
-
-.log-entry {
-  padding: 0.5rem;
-  border-bottom: 1px solid #ddd;
-}
-
-.log-entry:last-child {
-  border-bottom: none;
-}
-
-.log-method {
-  font-weight: bold;
-}
-
-.success {
-  color: green;
-}
-
-.failure {
-  color: red;
-}
-</style>

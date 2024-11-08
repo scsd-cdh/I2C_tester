@@ -1,7 +1,9 @@
 <template>
-  <div class="command-container">
-    <select v-model="selectedCommandCode" name="command" id="command-select" class="command-select">
-      <option v-for="(command, index) in commands" :key="index" :value="command.code">
+  <div class="flex flex-row items-center justify-center gap-4 text-center">
+    <select v-model="selectedCommandCode" name="command" id="command-select"
+      class="px-4 py-2 text-gray-800 text-base border border-gray-300 rounded-md max-w-[50vw] shadow-sm focus:border-blue-500 focus:ring-4 focus:ring-blue-300 transition">
+      <option v-for="(command, index) in commands" :key="index" :value="command.code"
+        class="bg-white text-gray-800 text-base hover:bg-blue-600 hover:text-white">
         {{ command.title }}
       </option>
     </select>
@@ -12,7 +14,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { Command } from '../../types/types';
-import CommandButton from '../Buttons/EmitButton.vue'; // Adjust path as needed
+import CommandButton from '../Buttons/EmitButton.vue';
 
 const props = defineProps<{
   commands: Command[]
@@ -23,7 +25,6 @@ const emit = defineEmits<{
 }>();
 
 const { commands } = props;
-
 const selectedCommandCode = ref<string>(commands[0]?.code || '');
 
 // Computed property to find the selected command object
@@ -38,45 +39,3 @@ const runCommand = () => {
   }
 };
 </script>
-
-<style scoped>
-.command-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  /* Center vertically */
-  text-align: center;
-}
-
-.command-select {
-  padding: 0.5rem 1rem;
-  /* FIXME 'g' char's bottom part gets cut*/
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  color: #333;
-  max-width: 50vw;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.command-select:focus {
-  border-color: #007BFF;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-  outline: none;
-}
-
-/* FIXME fix styling (isnt applying to options) */
-.command-select option {
-  background-color: #fff;
-  color: #333;
-  font-size: 1rem;
-}
-
-.command-select option:hover {
-  background-color: #007BFF;
-  color: #fff;
-}
-</style>

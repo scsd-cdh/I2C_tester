@@ -1,21 +1,21 @@
 <template>
   <div>
-    <div class="table-container">
-      <table class="commands-table">
+    <div class="max-h-[80vh] overflow-y-scroll border border-gray-300 rounded-md">
+      <table class="w-full border-collapse">
         <thead>
           <tr>
-            <th>Command</th>
-            <th>Code</th>
+            <th class="bg-gray-200 text-left p-2 border-b border-gray-300">Command</th>
+            <th class="bg-gray-200 text-left p-2 border-b border-gray-300">Code</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(command, index) in commands" :key="index">
-            <td>
-              <div class="command-title">{{ command.title }}</div>
-              <div class="command-description">{{ command.desc }}</div>
+          <tr v-for="(command, index) in commands" :key="index" class="even:bg-gray-50">
+            <td class="p-3 border-b border-gray-200">
+              <div class="font-semibold">{{ command.title }}</div>
+              <div class="text-sm text-gray-600">{{ command.desc }}</div>
             </td>
-            <td>
-              <code>{{ command.code }}</code>
+            <td class="p-3 border-b border-gray-200">
+              <code class="bg-gray-100 p-1 rounded-md">{{ command.code }}</code>
             </td>
           </tr>
         </tbody>
@@ -25,53 +25,9 @@
 </template>
 
 <script setup lang="ts">
-import { Command } from '../../types/types'
-
+import { Command } from '../../types/types';
 
 const props = defineProps<{
   commands: Command[];
 }>();
-
-const { commands } = props;
 </script>
-
-<style scoped>
-.table-container {
-  max-height: 80vh;
-  /* Adjust the height as needed */
-  overflow-y: scroll;
-  border: 1px solid #ddd;
-  /* Optional: adds a border around the container */
-}
-
-.commands-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.commands-table th,
-.commands-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-.commands-table th {
-  background-color: #f2f2f2;
-  text-align: left;
-}
-
-.command-title {
-  font-weight: bold;
-}
-
-.command-description {
-  font-size: 0.9em;
-  color: #666;
-}
-
-code {
-  background-color: #f9f9f9;
-  padding: 4px;
-  border-radius: 4px;
-}
-</style>
